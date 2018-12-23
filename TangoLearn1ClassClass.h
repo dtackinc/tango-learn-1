@@ -38,6 +38,40 @@ namespace TangoLearn1Class_ns
 /*----- PROTECTED REGION END -----*/	//	TangoLearn1ClassClass::classes for dynamic creation
 
 //=========================================
+//	Define classes for attributes
+//=========================================
+//	Attribute tango_learn1_attribute1 class definition
+class tango_learn1_attribute1Attrib: public Tango::Attr
+{
+public:
+	tango_learn1_attribute1Attrib():Attr("tango_learn1_attribute1",
+			Tango::DEV_DOUBLE, Tango::READ_WRITE) {};
+	~tango_learn1_attribute1Attrib() {};
+	virtual void read(Tango::DeviceImpl *dev,Tango::Attribute &att)
+		{(static_cast<TangoLearn1Class *>(dev))->read_tango_learn1_attribute1(att);}
+	virtual void write(Tango::DeviceImpl *dev,Tango::WAttribute &att)
+		{(static_cast<TangoLearn1Class *>(dev))->write_tango_learn1_attribute1(att);}
+	virtual bool is_allowed(Tango::DeviceImpl *dev,Tango::AttReqType ty)
+		{return (static_cast<TangoLearn1Class *>(dev))->is_tango_learn1_attribute1_allowed(ty);}
+};
+
+//	Attribute tango_learn1_attribute2 class definition
+class tango_learn1_attribute2Attrib: public Tango::Attr
+{
+public:
+	tango_learn1_attribute2Attrib():Attr("tango_learn1_attribute2",
+			Tango::DEV_STRING, Tango::READ_WRITE) {};
+	~tango_learn1_attribute2Attrib() {};
+	virtual void read(Tango::DeviceImpl *dev,Tango::Attribute &att)
+		{(static_cast<TangoLearn1Class *>(dev))->read_tango_learn1_attribute2(att);}
+	virtual void write(Tango::DeviceImpl *dev,Tango::WAttribute &att)
+		{(static_cast<TangoLearn1Class *>(dev))->write_tango_learn1_attribute2(att);}
+	virtual bool is_allowed(Tango::DeviceImpl *dev,Tango::AttReqType ty)
+		{return (static_cast<TangoLearn1Class *>(dev))->is_tango_learn1_attribute2_allowed(ty);}
+};
+
+
+//=========================================
 //	Define classes for commands
 //=========================================
 //	Command tango_learn1_command1 class definition

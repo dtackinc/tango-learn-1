@@ -42,8 +42,10 @@
 //================================================================
 
 //================================================================
-//  Attributes managed is:
+//  Attributes managed are:
 //================================================================
+//  tango_learn1_attribute1  |  Tango::DevDouble	Scalar
+//  tango_learn1_attribute2  |  Tango::DevString	Scalar
 //================================================================
 
 namespace TangoLearn1Class_ns
@@ -102,6 +104,9 @@ void TangoLearn1Class::delete_device()
 	//	Delete device allocated objects
 	
 	/*----- PROTECTED REGION END -----*/	//	TangoLearn1Class::delete_device
+	CORBA::string_free(*attr_tango_learn1_attribute2_read);
+	delete[] attr_tango_learn1_attribute1_read;
+	delete[] attr_tango_learn1_attribute2_read;
 }
 
 //--------------------------------------------------------
@@ -123,9 +128,17 @@ void TangoLearn1Class::init_device()
 	//	Get the device properties from database
 	get_device_property();
 	
+	attr_tango_learn1_attribute1_read = new Tango::DevDouble[1];
+	attr_tango_learn1_attribute2_read = new Tango::DevString[1];
 	/*----- PROTECTED REGION ID(TangoLearn1Class::init_device) ENABLED START -----*/
 	
+	// set an intial value for the attributes
+	attr_tango_learn1_attribute1_read[0] = -1.0;
+	attr_tango_learn1_attribute2_read[0] = Tango::string_dup("initial value");
+
 	//	Initialize device
+
+	DEBUG_STREAM << "TangoLearn1Class::init_device() protected initialization for device " << device_name << endl;
 	
 	/*----- PROTECTED REGION END -----*/	//	TangoLearn1Class::init_device
 }
@@ -213,7 +226,102 @@ void TangoLearn1Class::read_attr_hardware(TANGO_UNUSED(vector<long> &attr_list))
 	
 	/*----- PROTECTED REGION END -----*/	//	TangoLearn1Class::read_attr_hardware
 }
+//--------------------------------------------------------
+/**
+ *	Method      : TangoLearn1Class::write_attr_hardware()
+ *	Description : Hardware writing for attributes
+ */
+//--------------------------------------------------------
+void TangoLearn1Class::write_attr_hardware(TANGO_UNUSED(vector<long> &attr_list))
+{
+	DEBUG_STREAM << "TangoLearn1Class::write_attr_hardware(vector<long> &attr_list) entering... " << endl;
+	/*----- PROTECTED REGION ID(TangoLearn1Class::write_attr_hardware) ENABLED START -----*/
+	
+	//	Add your own code
+	
+	/*----- PROTECTED REGION END -----*/	//	TangoLearn1Class::write_attr_hardware
+}
 
+//--------------------------------------------------------
+/**
+ *	Read attribute tango_learn1_attribute1 related method
+ *	Description: 
+ *
+ *	Data type:	Tango::DevDouble
+ *	Attr type:	Scalar
+ */
+//--------------------------------------------------------
+void TangoLearn1Class::read_tango_learn1_attribute1(Tango::Attribute &attr)
+{
+	DEBUG_STREAM << "TangoLearn1Class::read_tango_learn1_attribute1(Tango::Attribute &attr) entering... " << endl;
+	/*----- PROTECTED REGION ID(TangoLearn1Class::read_tango_learn1_attribute1) ENABLED START -----*/
+	//	Set the attribute value
+	attr.set_value(attr_tango_learn1_attribute1_read);
+	
+	/*----- PROTECTED REGION END -----*/	//	TangoLearn1Class::read_tango_learn1_attribute1
+}
+//--------------------------------------------------------
+/**
+ *	Write attribute tango_learn1_attribute1 related method
+ *	Description: 
+ *
+ *	Data type:	Tango::DevDouble
+ *	Attr type:	Scalar
+ */
+//--------------------------------------------------------
+void TangoLearn1Class::write_tango_learn1_attribute1(Tango::WAttribute &attr)
+{
+	DEBUG_STREAM << "TangoLearn1Class::write_tango_learn1_attribute1(Tango::WAttribute &attr) entering... " << endl;
+	//	Retrieve write value
+	Tango::DevDouble	w_val;
+	attr.get_write_value(w_val);
+	/*----- PROTECTED REGION ID(TangoLearn1Class::write_tango_learn1_attribute1) ENABLED START -----*/
+	
+	
+	/*----- PROTECTED REGION END -----*/	//	TangoLearn1Class::write_tango_learn1_attribute1
+}
+//--------------------------------------------------------
+/**
+ *	Read attribute tango_learn1_attribute2 related method
+ *	Description: 
+ *
+ *	Data type:	Tango::DevString
+ *	Attr type:	Scalar
+ */
+//--------------------------------------------------------
+void TangoLearn1Class::read_tango_learn1_attribute2(Tango::Attribute &attr)
+{
+	DEBUG_STREAM << "TangoLearn1Class::read_tango_learn1_attribute2(Tango::Attribute &attr) entering... " << endl;
+	/*----- PROTECTED REGION ID(TangoLearn1Class::read_tango_learn1_attribute2) ENABLED START -----*/
+	//	Set the attribute value
+	
+	CORBA::string_free(*attr_tango_learn1_attribute2_read);
+	attr_tango_learn1_attribute2_read[0] = Tango::string_dup("interrogated value");
+  attr.set_value(attr_tango_learn1_attribute2_read);
+	
+	/*----- PROTECTED REGION END -----*/	//	TangoLearn1Class::read_tango_learn1_attribute2
+}
+//--------------------------------------------------------
+/**
+ *	Write attribute tango_learn1_attribute2 related method
+ *	Description: 
+ *
+ *	Data type:	Tango::DevString
+ *	Attr type:	Scalar
+ */
+//--------------------------------------------------------
+void TangoLearn1Class::write_tango_learn1_attribute2(Tango::WAttribute &attr)
+{
+	DEBUG_STREAM << "TangoLearn1Class::write_tango_learn1_attribute2(Tango::WAttribute &attr) entering... " << endl;
+	//	Retrieve write value
+	Tango::DevString	w_val;
+	attr.get_write_value(w_val);
+
+	/*----- PROTECTED REGION ID(TangoLearn1Class::write_tango_learn1_attribute2) ENABLED START -----*/
+
+	
+	/*----- PROTECTED REGION END -----*/	//	TangoLearn1Class::write_tango_learn1_attribute2
+}
 
 //--------------------------------------------------------
 /**
@@ -243,7 +351,8 @@ void TangoLearn1Class::tango_learn1_command1()
 	DEBUG_STREAM << "TangoLearn1Class::tango_learn1_command1()  - " << device_name << endl;
 	/*----- PROTECTED REGION ID(TangoLearn1Class::tango_learn1_command1) ENABLED START -----*/
 	
-	//	Add your own code
+	INFO_STREAM << "TangoLearn1Class::tango_learn1_command1()  - " << device_name << endl;
+	push_data_ready_event("tango_learn1_attribute1", 1234);
 	
 	/*----- PROTECTED REGION END -----*/	//	TangoLearn1Class::tango_learn1_command1
 }

@@ -424,6 +424,56 @@ void TangoLearn1ClassClass::attribute_factory(vector<Tango::Attr *> &att_list)
 	//	Add your own code
 	
 	/*----- PROTECTED REGION END -----*/	//	TangoLearn1ClassClass::attribute_factory_before
+	//	Attribute : tango_learn1_attribute1
+	tango_learn1_attribute1Attrib	*tango_learn1_attribute1 = new tango_learn1_attribute1Attrib();
+	Tango::UserDefaultAttrProp	tango_learn1_attribute1_prop;
+	//	description	not set for tango_learn1_attribute1
+	tango_learn1_attribute1_prop.set_label("Tango Learn1 Attribute1 Label");
+	tango_learn1_attribute1_prop.set_unit("Tango Learn1 Attribute1 Label");
+	//	standard_unit	not set for tango_learn1_attribute1
+	//	display_unit	not set for tango_learn1_attribute1
+	//	format	not set for tango_learn1_attribute1
+	//	max_value	not set for tango_learn1_attribute1
+	//	min_value	not set for tango_learn1_attribute1
+	//	max_alarm	not set for tango_learn1_attribute1
+	//	min_alarm	not set for tango_learn1_attribute1
+	//	max_warning	not set for tango_learn1_attribute1
+	//	min_warning	not set for tango_learn1_attribute1
+	//	delta_t	not set for tango_learn1_attribute1
+	//	delta_val	not set for tango_learn1_attribute1
+	
+	tango_learn1_attribute1->set_default_properties(tango_learn1_attribute1_prop);
+	//	Not Polled
+	tango_learn1_attribute1->set_disp_level(Tango::OPERATOR);
+	//	Not Memorized
+	tango_learn1_attribute1->set_data_ready_event(true);
+	att_list.push_back(tango_learn1_attribute1);
+
+	//	Attribute : tango_learn1_attribute2
+	tango_learn1_attribute2Attrib	*tango_learn1_attribute2 = new tango_learn1_attribute2Attrib();
+	Tango::UserDefaultAttrProp	tango_learn1_attribute2_prop;
+	//	description	not set for tango_learn1_attribute2
+	tango_learn1_attribute2_prop.set_label("Tango Learn1 Attribute2 Label");
+	tango_learn1_attribute2_prop.set_unit("Tango Learn1 Attribute2 Unit");
+	//	standard_unit	not set for tango_learn1_attribute2
+	//	display_unit	not set for tango_learn1_attribute2
+	//	format	not set for tango_learn1_attribute2
+	//	max_value	not set for tango_learn1_attribute2
+	//	min_value	not set for tango_learn1_attribute2
+	//	max_alarm	not set for tango_learn1_attribute2
+	//	min_alarm	not set for tango_learn1_attribute2
+	//	max_warning	not set for tango_learn1_attribute2
+	//	min_warning	not set for tango_learn1_attribute2
+	//	delta_t	not set for tango_learn1_attribute2
+	//	delta_val	not set for tango_learn1_attribute2
+	
+	tango_learn1_attribute2->set_default_properties(tango_learn1_attribute2_prop);
+	//	Not Polled
+	tango_learn1_attribute2->set_disp_level(Tango::OPERATOR);
+	//	Not Memorized
+	tango_learn1_attribute2->set_data_ready_event(true);
+	att_list.push_back(tango_learn1_attribute2);
+
 
 	//	Create a list of static attributes
 	create_static_attribute_list(get_class_attr()->get_attr_list());

@@ -51,6 +51,10 @@ public:
 	//	tango_learn1_device_property1:	Tango Learn1 Device Property1
 	string	tango_learn1_device_property1;
 
+//	Attribute data members
+public:
+	Tango::DevDouble	*attr_tango_learn1_attribute1_read;
+	Tango::DevString	*attr_tango_learn1_attribute2_read;
 
 //	Constructors and destructors
 public:
@@ -111,6 +115,34 @@ public:
 	 */
 	//--------------------------------------------------------
 	virtual void read_attr_hardware(vector<long> &attr_list);
+	//--------------------------------------------------------
+	/*
+	 *	Method      : TangoLearn1Class::write_attr_hardware()
+	 *	Description : Hardware writing for attributes.
+	 */
+	//--------------------------------------------------------
+	virtual void write_attr_hardware(vector<long> &attr_list);
+
+/**
+ *	Attribute tango_learn1_attribute1 related methods
+ *	Description: 
+ *
+ *	Data type:	Tango::DevDouble
+ *	Attr type:	Scalar
+ */
+	virtual void read_tango_learn1_attribute1(Tango::Attribute &attr);
+	virtual void write_tango_learn1_attribute1(Tango::WAttribute &attr);
+	virtual bool is_tango_learn1_attribute1_allowed(Tango::AttReqType type);
+/**
+ *	Attribute tango_learn1_attribute2 related methods
+ *	Description: 
+ *
+ *	Data type:	Tango::DevString
+ *	Attr type:	Scalar
+ */
+	virtual void read_tango_learn1_attribute2(Tango::Attribute &attr);
+	virtual void write_tango_learn1_attribute2(Tango::WAttribute &attr);
+	virtual bool is_tango_learn1_attribute2_allowed(Tango::AttReqType type);
 
 
 	//--------------------------------------------------------

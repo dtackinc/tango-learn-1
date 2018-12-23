@@ -45,7 +45,7 @@ int main(int argc,char *argv[])
 
 		// Run the endless loop
 		//----------------------------------------
-		cout << "Ready to accept request" << endl;
+		cout << "Ready to accept request 11:45" << endl;
 		tg->server_run();
 	}
 	catch (bad_alloc &)

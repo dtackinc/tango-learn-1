@@ -130,12 +130,16 @@ LIB_OBJS = \
 
 SVC_INHERITANCE_OBJ =  \
 
-
 #=============================================================================
 #	include common targets
-#
+
+SPECIFIC_ALL_TARGET = bin/client
+
 include $(MAKE_ENV)/common_target.opt
 
-
+#=============================================================================
+bin/client: obj/client.o
+		@echo "Linking executable bin/client ..."
+		$(CXX) obj/client.o $(ADDITIONAL_OBJS) $(LDFLAGS) -o bin/client
 
 

@@ -33,3 +33,13 @@
 
 # tmp files
 *.tmp
+
+bin/
+
+GPATH
+
+GRTAGS
+
+GTAGS
+
+\.vscode/

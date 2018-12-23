@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="ASCII"?>
 <pogoDsl:PogoSystem xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:pogoDsl="http://www.esrf.fr/tango/pogo/PogoDsl">
   <classes name="TangoLearn1Class" pogoRevision="9.4">
-    <description description="Tango Learn 1 Class--Class Description" title="Tango Learn 1 Class--Product Title" sourcePath="/home/lprime/tango-learn-1" language="Cpp" filestogenerate="XMI   file,Code files,Makefile,Protected Regions,html Pages" license="none" copyright="Tango Learn 1Class Class--Class Copyright" hasMandatoryProperty="false" hasConcreteProperty="true" hasAbstractCommand="false" hasAbstractAttribute="false" descriptionHtmlExists="false">
+    <description description="Tango Learn 1 Class--Class Description" title="Tango Learn 1 Class--Product Title" sourcePath="/home/lprime/13/tango-learn-1" language="Cpp" filestogenerate="XMI   file,Code files,Protected Regions" license="none" copyright="Tango Learn 1Class Class--Class Copyright" hasMandatoryProperty="false" hasConcreteProperty="true" hasAbstractCommand="false" hasAbstractAttribute="false">
       <inheritances classname="Device_Impl" sourcePath=""/>
       <identification contact="at dtack.com - erb" author="erb" emailDomain="dtack.com" classFamily="InputOutput" siteSpecific="" platform="All Platforms" bus="TCP/UDP" manufacturer="David Erb" reference="Tango Learn 1 Class--Product Reference"/>
     </description>
@@ -47,6 +47,22 @@
       </argout>
       <status abstract="false" inherited="false" concrete="true" concreteHere="true"/>
     </commands>
+    <attributes name="tango_learn1_attribute1" attType="Scalar" rwType="READ_WRITE" displayLevel="OPERATOR" polledPeriod="0" maxX="" maxY="" allocReadMember="true" isDynamic="false">
+      <dataType xsi:type="pogoDsl:DoubleType"/>
+      <changeEvent fire="false" libCheckCriteria="false"/>
+      <archiveEvent fire="false" libCheckCriteria="false"/>
+      <dataReadyEvent fire="true" libCheckCriteria="true"/>
+      <status abstract="false" inherited="false" concrete="true" concreteHere="true"/>
+      <properties description="" label="Tango Learn1 Attribute1 Label" unit="Tango Learn1 Attribute1 Label" standardUnit="" displayUnit="" format="" maxValue="" minValue="" maxAlarm="" minAlarm="" maxWarning="" minWarning="" deltaTime="" deltaValue=""/>
+    </attributes>
+    <attributes name="tango_learn1_attribute2" attType="Scalar" rwType="READ_WRITE" displayLevel="OPERATOR" polledPeriod="0" maxX="" maxY="" allocReadMember="true" isDynamic="false">
+      <dataType xsi:type="pogoDsl:StringType"/>
+      <changeEvent fire="false" libCheckCriteria="false"/>
+      <archiveEvent fire="false" libCheckCriteria="false"/>
+      <dataReadyEvent fire="true" libCheckCriteria="true"/>
+      <status abstract="false" inherited="false" concrete="true" concreteHere="true"/>
+      <properties description="" label="Tango Learn1 Attribute2 Label" unit="Tango Learn1 Attribute2 Unit" standardUnit="" displayUnit="" format="" maxValue="" minValue="" maxAlarm="" minAlarm="" maxWarning="" minWarning="" deltaTime="" deltaValue=""/>
+    </attributes>
     <states name="MOVING" description="Tango Learn1 State MOVING">
       <status abstract="false" inherited="false" concrete="true" concreteHere="true"/>
     </states>
