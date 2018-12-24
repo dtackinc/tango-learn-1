@@ -1,98 +1,114 @@
 /*
  * example of a client using the TANGO C++ api.
  */
+#include <queue>
+
 #include <tango.h>
 using namespace Tango;
 
-#include "stango.h"
+#include <tangoo.h>
 
 // ---------------------------------------------------------------------------
 class event_callback_c: public Tango::CallBack
 {
-	public:
-	  event_callback_c();
+	private:
+	tangoo::humanize_c humanize;
 
-  	void push_event(Tango::DataReadyEventData *event_data);
+  public:
+  // ---------------------------------------------------------------------------
+  virtual void push_event(Tango::DataReadyEventData *event_data) override
+  {
+		if (event_data->err)
+    {
+      Tango::Except::print_error_stack(event_data->errors);
+      return;
+    }	  
+
+		cout << humanize.attribute(event_data) << endl;
+	}
 };
-
-// ---------------------------------------------------------------------------
-event_callback_c::event_callback_c(): Tango::CallBack()
-{
-
-}
-
-// ---------------------------------------------------------------------------
-void event_callback_c::push_event(Tango::DataReadyEventData *event_data)
-{
-		cout << 
-			"device " + event_data->device->dev_name() +
-			" saw " + event_data->event +
-			" for " + event_data->attr_name;
-}
 
 
 // ---------------------------------------------------------------------------
 
 int main(int argc, char **argv)
 {
+ 
+	event_callback_c event_callback;
+
+  std::queue<int> event_id_queue;
+
 	try
   {
  
 //
 // create a connection to a TANGO device
 //
- 
-      DeviceProxy *device = new DeviceProxy("tango://localhost:20001/TangoLearn1Class/devel/ping#dbase=no");
+		// when device server runs with -nodb:
+    // DeviceProxy *device = new DeviceProxy("tango://localhost:20001/TangoLearn1Class/devel/ping#dbase=no");
+
+		// when device server runs with dbserver:
+    DeviceProxy *device = new DeviceProxy("tangolearn1class/instance1/device1");
  
 //
 // Ping the device
 //
 
-      device->ping();
- 
+    device->ping();
+
+    TANGOO(event_id_queue.push(device->subscribe_event(
+            "tango_learn1_attribute1",
+            Tango::EventType::DATA_READY_EVENT,
+            &event_callback,
+						false)));        
+
+    TANGOO(event_id_queue.push(device->subscribe_event(
+            "tango_learn1_attribute2",
+            Tango::EventType::DATA_READY_EVENT,
+            &event_callback,
+						false)));        
+
 //
 // Execute a command on the device and extract the reply as a string
 //
+		cout << "hit enter to continue..." << endl;
 
+		{
       string db_info;
       DeviceData cmd_reply;
 
-    STANGO(cmd_reply = device->command_inout("tango_learn1_command1"));
-     //STANGO(cmd_reply >> db_info);
-     //cout << "Command reply " << db_info << endl;
+      TANGOO(cmd_reply = device->command_inout("tango_learn1_command1"));
+      //TANGOO(cmd_reply >> db_info);
+      //cout << "Command reply " << db_info << endl;
+		}
+
+		cin.get();
  
+		while(!event_id_queue.empty())
+		{
+		  device->unsubscribe_event(event_id_queue.front());
+			event_id_queue.pop();
+		}
 //
 // Read a device attribute (string data type)
 //
+#if false
 		{
       double value;
       DeviceAttribute attribute;
-      STANGO(attribute = device->read_attribute("tango_learn1_attribute1"));
-      STANGO(attribute >> value);
+      TANGOO(attribute = device->read_attribute("tango_learn1_attribute1"));
+      TANGOO(attribute >> value);
       cout << "tango_learn1_attribute1 double: " << value << endl;
 		}
 
 		{
       string value;
       DeviceAttribute attribute;
-      STANGO(attribute = device->read_attribute("tango_learn1_attribute2"));
-      STANGO(attribute >> value);
+      TANGOO(attribute = device->read_attribute("tango_learn1_attribute2"));
+      TANGOO(attribute >> value);
       cout << "tango_learn1_attribute2 string: " << value << endl;
 		}
-
-		event_callback_c *event_callback = new event_callback_c();
-
-    STANGO(device->subscribe_event(
-            "tango_learn1_attribute1",
-            Tango::EventType::DATA_READY_EVENT,
-            event_callback,
-						false));        
-
-    STANGO(device->subscribe_event(
-            "tango_learn1_attribute2",
-            Tango::EventType::DATA_READY_EVENT,
-            event_callback,
-						false));        
+#endif		
   }
   catch (DevFailed &e)
   {

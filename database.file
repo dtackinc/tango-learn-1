@@ -1,0 +1,18 @@
+TangoLearn1Class/tango_learn1_class_instance1/DEVICE/TangoLearn1Class: "TangoLearn1Class/instance1/device1"
+
+#############################################
+# CLASS TangoLearn1Class
+
+CLASS/TangoLearn1Class->ProjectTitle: "Tango Learn 1 Class--Product Title"
+CLASS/TangoLearn1Class->Description: "Tango Learn 1 Class--Class Description"
+CLASS/TangoLearn1Class->InheritedFrom: TANGO_BASE_CLASS
+
+# CLASS TangoLearn1Class attribute properties
+
+
+
+# DEVICE TangoLearn1Class/instance1/device1 properties 
+
+
+# DEVICE TangoLearn1Class/instance1/device1 attribute properties
+

@@ -348,11 +348,11 @@ void TangoLearn1Class::add_dynamic_attributes()
 //--------------------------------------------------------
 void TangoLearn1Class::tango_learn1_command1()
 {
-	DEBUG_STREAM << "TangoLearn1Class::tango_learn1_command1()  - " << device_name << endl;
 	/*----- PROTECTED REGION ID(TangoLearn1Class::tango_learn1_command1) ENABLED START -----*/
-	
-	INFO_STREAM << "TangoLearn1Class::tango_learn1_command1()  - " << device_name << endl;
+
+	INFO_STREAM << "TangoLearn1Class::tango_learn1_command1() X - " << device_name << endl;
 	push_data_ready_event("tango_learn1_attribute1", 1234);
+	push_data_ready_event("tango_learn1_attribute2", 1235);
 	
 	/*----- PROTECTED REGION END -----*/	//	TangoLearn1Class::tango_learn1_command1
 }

@@ -57,14 +57,15 @@ OUTPUT_TYPE = DEVICE
 #   - for a device server, tango dependencies are automatically appended
 #   - '-I ../include' and '-I .' are automatically appended in all cases
 #
-INC_DIR_USER= -I . 
+TANGOO_DIRECTORY = /home/lprime/13/tangoo
+INC_DIR_USER= -I $(TANGOO_DIRECTORY)/include
 
 #=============================================================================
 # LIB_DIR_USER is the list of user library directories
 #   - for a device server, tango libraries directories are automatically appended
 #   - '-L ../lib' is automatically appended in all cases
 #
-LIB_DIR_USER=
+LIB_DIR_USER=-L$(TANGOO_DIRECTORY)/lib -ltangoo
 
 #=============================================================================
 # LFLAGS_USR is the list of user link flags
@@ -138,8 +139,11 @@ SPECIFIC_ALL_TARGET = bin/client
 include $(MAKE_ENV)/common_target.opt
 
 #=============================================================================
-bin/client: obj/client.o
+bin/client: obj/client.o $(TANGOO_DIRECTORY)/lib/libtangoo.a
 		@echo "Linking executable bin/client ..."
 		$(CXX) obj/client.o $(ADDITIONAL_OBJS) $(LDFLAGS) -o bin/client
 
+
+$(TANGOO_DIRECTORY)/lib/libtangoo.a:
+		cd $(TANGOO_DIRECTORY)/lib; make
 
